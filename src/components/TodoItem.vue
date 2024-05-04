@@ -10,8 +10,13 @@
 
 </label>
 
-<slot id="remove" name="removeTodo"></slot></label>
+<div class="flex gap-2"><slot id="remove" name="removeTodo"></slot>
+
+<button class="bg-gray-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Edit</button>
+</div>
+</label>
   <hr v-if="todo.done" class="w-full absolute top-1/2  bg-gray-500">
+ 
 </div>
 
     </template>
