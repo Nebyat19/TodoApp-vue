@@ -19,13 +19,14 @@
     <div v-if="isDialogOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div class="bg-white rounded w-[90%] px-5 py-5 max-w-md">
         <h2 class="text-2xl font-bold mb-4">Edit Todo</h2>
-        <input :value="todo.content" class="w-full border outline-none focus:border-slate-500 text-gray-500 text-sm px-3 py-3 mt-1 rounded-md" type="text" placeholder="e.g make a video" />
+        <input  v-model="newContent" class="w-full border outline-none focus:border-slate-500 text-gray-500 text-sm px-3 py-3 mt-1 rounded-md" type="text" placeholder="e.g make a video" />
       <div class="flex gap-5 mt-3">
-        <button @click="saveTodo" type="button" class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Save</button>
+        <button @click="updateParent(todo,newContent)" type="button" class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Save</button>
       
       <button @click="isDialogOpen=!isDialogOpen" type="button" class="bg-gray-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Close</button>
 
       </div>
+      <div class="text-xs text-center text-red-500" v-if="errorMessage">{{ errorMessage }}</div>
       </div>
     
     </div>
@@ -33,7 +34,7 @@
 
 </div>
 </label>
-  <hr v-if="todo.done" class="w-full absolute top-1/2  bg-gray-500">
+ 
  
 </div>
 
@@ -43,16 +44,33 @@
 <script >
 
 import { ref } from 'vue';
-import DeleteButton from './DeleteButton.vue';
+
 export default{
  props:['todo','id'],
 
-  setup(props){
+  setup(){
     const isDone =ref(false)
-   const isDialogOpen = ref(false)
-    return {isDone,isDialogOpen}
-  }
+    const isDialogOpen = ref(false)
+    const newContent = ref('')
+  
+    
+    return {isDone,isDialogOpen,newContent}
+  },
+ data(){
+  return {
+     errorMessage:''
 
+  }
+ },
+  methods:{
+    updateParent(todo,newContent){
+     
+      if(newContent==='') return this.errorMessage="content Can not be empty!"
+      this.isDialogOpen=!this.isDialogOpen
+      this.$emit('updateParentData',todo.id,newContent)
+    }
+  
+  }
 }
 
 </script>

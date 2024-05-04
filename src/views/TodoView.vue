@@ -58,10 +58,10 @@
         
           <div class="text-center mt-3 uppercase text-red-500 text-xs">{{ errorMessage }}</div>
           <h1 class="text-sm text-gray-700 px-3 mt-5">Todo List</h1>
-          <TodoItem v-for="(todo,index) in todosComputed" :todos="todos" :todo="todo" :key="todo.input_content" :id="index" >
+          <TodoItem @updateParentData="updateParentData" v-for="(todo,index) in todosComputed" :todos="todos" :todo="todo" :key="todo.input_content" :id="index" >
            <template #makeDoneButton>
     <input  class="hidden" v-model="todo.done" value="true" type="checkbox" id="isDone" name="isDone" > 
-        
+       
            </template>
             <template #removeTodo>
      <button  @click="removeTodo(todo)" type="button" class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Delete</button>
@@ -99,6 +99,7 @@ const addTodo = () => {
   return errorMessage.value= "select catagory or input todo";
 }
 todo.value={
+   id:todos.value.length+1,
    content:input_content.value,
    catagory:input_catagory.value, 
    createdAt:new Date().getTime() ,
@@ -115,6 +116,7 @@ todo.value=null
 
 }
 
+
 const isNew=(todo)=>{
   return todos.value.every(t => t.content !== todo.value.content)
 }
@@ -129,12 +131,17 @@ watch(name, (newValue) => {
   localStorage.setItem('name', newValue)
 })
 
+const updateParentData=(id, newData) =>{
+  const index=todos.value.findIndex(t=>t.id===id)
+  todos.value[index].content=newData
 
+  console.log(todos.value)
+    }
 onMounted(() => {
   name.value = localStorage.getItem('name') || ''
   todos.value = JSON.parse(localStorage.getItem('todos')) || []
   
  console.log(todos.value)
-  
+
 })
 </script>
