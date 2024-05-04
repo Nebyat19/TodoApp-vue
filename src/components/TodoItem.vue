@@ -12,7 +12,7 @@
 
 <div class="flex gap-2"><slot id="remove" name="removeTodo"></slot>
 
-<button @click="isDialogOpen=!isDialogOpen" type="button" class="bg-gray-500 hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Edit</button>
+<button @click="isDialogOpen=!isDialogOpen" type="button" class="bg-[#39FF14] hover:bg-red-400 text-white py-1 px-2 rounded-md text-sm">Edit</button>
 <div>
     
 

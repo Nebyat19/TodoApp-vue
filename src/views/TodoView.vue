@@ -1,21 +1,21 @@
 <template>
-  <div class="bg-gary-50 w-full h-full flex justify-center">
+  <div class="bg-slate-100 w-full h-full flex justify-center">
     <form @submit.prevent="addTodo">
       <div
-        class="flex pt-10 px-5 text-slate-900 w-full  flex-col gap-5 h-screen border border-gray-100 bg-gray-100"
+        class="flex pt-10 px-5 text-slate-900 w-full  flex-col gap-5 h-screen bg-slate-950"
       >
-        <div class="flex justify-start gap-5">
-          <h2 class="text-lg flex font-bold whitespace-nowrap text-gray-900">What's up,</h2>
+        <div class="flex  text-center items-center justify-start gap-3">
+          <h2 class="text-lg flex font-bold whitespace-nowrap text-[#C0C0C0]">What's up,</h2>
           <input
-            class="bg-slate-100 outline-none inline-block"
+            class="bg-slate-950 font-bold text-[#C0C0C0] outline-none inline-block"
             v-model="name"
             type="text"
             placeholder="Hetu"
           />
         </div>
         <div>
-          <h2 class="uppercase text-lg text-gray-700">Create a todo</h2>
-          <h3 class="text-sm text-gray-800">what's on your todo list?</h3>
+          <h2 class="uppercase text-lg text-[#C0C0C0]">Create a todo</h2>
+          <h3 class="text-sm text-[#39FF14]">what's on your todo list?</h3>
 
           <IputField>
             <input
@@ -25,7 +25,7 @@
               placeholder="e.g make a video"
             />
           </IputField>
-          <h1 class="text-sm text-gray-700 mt-5">Pick a ctagory</h1>
+          <h1 class="text-sm text-[#39FF14] mt-5">Pick a ctagory</h1>
 
           <div  class="flex gap-5 align-middle mt-2">
             <label  for="catagory1" class="bg-white hover:bg-slate-200 rounded-md flex gap-3 p-5 grow">
@@ -54,10 +54,10 @@
               <h1>Personal</h1>
             </label> 
           </div>
-          <button class="w-full" type="submit">  <AddButton/></button>
+          <button class="w-full " type="submit">  <AddButton/></button>
         
           <div class="text-center mt-3 uppercase text-red-500 text-xs">{{ errorMessage }}</div>
-          <h1 class="text-sm text-gray-700 px-3 mt-5">Todo List</h1>
+          <h1 class="text-sm text-[#39FF14] px-3 mt-5">Todo List</h1>
           <TodoItem @updateParentData="updateParentData" v-for="(todo,index) in todosComputed" :todos="todos" :todo="todo" :key="todo.input_content" :id="index" >
            <template #makeDoneButton>
     <input  class="hidden" v-model="todo.done" value="true" type="checkbox" id="isDone" name="isDone" > 
