@@ -110,16 +110,13 @@ if(!isNew(todo)){
 }
 todos.value.push(todo.value)
 
-console.log(todo.value)
+todo.value=null
 
 }
-const isNew = (todo) => {
 
-   return !todos.value.some(existingTodo => 
-       existingTodo.content === todo.content && existingTodo.category === todo.category
-   );
+const isNew=(todo)=>{
+  return todos.value.every(t => t.content !== todo.value.content)
 }
-
 const removeTodo =(todo)=>{
   todos.value=todos.value.filter(t => t !==todo)
 
