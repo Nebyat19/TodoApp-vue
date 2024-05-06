@@ -1,7 +1,7 @@
 # Simple TodoApp
 
 This is a simple todoApp built with Vue.js and Tailwind CSS. It allows users to add, remove, and mark tasks as completed, with data persisting in the browser's local storage.
-
+![screenshoot](Screenshot.png)
 ## Features
 
 - Add new tasks
